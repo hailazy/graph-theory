@@ -1,0 +1,7 @@
+version: '3'
+services:
+  base:
+    build:
+      context: .
+    volumes:
+      - ./source_dir:/app/target_dir

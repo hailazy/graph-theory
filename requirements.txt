@@ -1,2 +1,5 @@
 scipy
 numpy
+networkx
+pygame
+matplotlib
