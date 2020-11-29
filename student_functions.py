@@ -22,13 +22,30 @@ def DFS(matrix, start, end):
 
     path = []
     visited = {}
-    inode = matrix.shape[0]
-    print(inode)
-    # if start not in visited:
-    #     print(matrix[start])
-    #     for key in matrix[start]:
-    #         print('key', key)
+    if start not in matrix:
+        return "Invalid input"
 
+    stack = [start]
+    prev = -1
+
+    while (end not in visited) and stack:
+        vertex = stack.pop()
+        if vertex in visited:
+            continue
+        visited[vertex] = prev
+        prev = vertex
+        for index in range(len(matrix[vertex])):
+            if matrix[vertex][index]:
+                stack.append(index)
+
+    if end in visited:
+        vertex = end
+        while visited.get(vertex) != -1:
+            path.append(vertex)
+            vertex = visited.get(vertex)
+    path.append(start)
+    path.reverse()
+    print(path)
     return visited, path
 
 def BFS(matrix, start, end):
@@ -52,11 +69,33 @@ def BFS(matrix, start, end):
         Founded path
     """
 
-    # TODO: 
+    # TODO:
 
     path = []
     visited = {}
+    if start not in matrix:
+        return "Invalid input"
 
+    queue = [start]
+    prev = -1
+    while (end not in visited) and queue:
+        vertex = queue.pop(0)
+        if vertex in visited:
+            continue
+        visited[vertex] = prev
+        prev = vertex
+        for index in range(len(matrix[vertex])):
+            if matrix[vertex][index]:
+                queue.append(index)
+
+    if end in visited:
+        vertex = end
+        while visited.get(vertex) != -1:
+            path.append(vertex)
+            vertex = visited.get(vertex)
+    path.append(start)
+    path.reverse()
+    print(visited)
     return visited, path
 
 def UCS(matrix, start, end, pos):
